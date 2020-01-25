@@ -1,0 +1,20 @@
+{
+  "name": "interprete-sencillo-jison",
+  "version": "0.1.0",
+  "description": "Interprete sencillo elaborado en node js con la herramienta jison",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "jison": "cd src/grammar && jison grammar.jison grammar.jisonlex"
+  },
+  "keywords": [
+    "jison",
+    "interprete"
+  ],
+  "author": "Ronald Berdúo",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "jison": "^0.4.18"
+  }
+}
