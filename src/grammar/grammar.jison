@@ -4,6 +4,19 @@
   */
 %start CompilationUnit
 
+%options parser-errors-are-recoverable lexer-errors-are-recoverable
+
+%right '='
+%right '?' ':'
+%left '||'
+%left '&&'
+%left '^'
+%left '!=' '=='
+%nonassoc '>=' '>' '<=' '<'
+%left '+' '-'
+%left '*' '/' '%'
+%left '(' ')'
+
 %% /* language grammar */
 /*
 ============================================================
@@ -11,7 +24,12 @@
 ============================================================
 */
 CompilationUnit
-  : Block
+  : Statements EOF
+  | error EOF {
+    addSemanticError($error.errStr, @error);
+    yyerrok;
+    yyclearin;
+  }
 ;
 
 Block
@@ -29,6 +47,11 @@ Statement
   | AssignmentStatement
   | IfStatement
   | WhileStatement
+  | error ';' {
+    addSemanticError($error.errStr, @error);
+    yyerrok;
+    yyclearin;
+  }
 ;
 
 /*
@@ -108,7 +131,13 @@ PrintStatement
 ============================================================
 */
 Expression
-  : STRING_LITERAL
-  | NUMBER_LITERAL
-  | BOOLEAN_LITERAL
+  : STRING_LITERAL {}
+  | NUMBER_LITERAL {}
+  | BOOLEAN_LITERAL {}
+  | IDENTIFIER {}
 ;
+
+%%
+function addSemanticError(message, information) {
+  console.log(message, information);
+}

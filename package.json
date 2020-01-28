@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "description": "Interprete sencillo elaborado en node js con la herramienta jison",
   "main": "src/index.js",
+  "bin": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "jison": "cd src/grammar && jison grammar.jison grammar.jisonlex"
+    "jison": "cd src/grammar && jison grammar.jison grammar.jisonlex",
+    "test": "node src/index.js src/sample.txt"
   },
   "keywords": [
     "jison",
@@ -13,8 +14,14 @@
   ],
   "author": "Ronald Berdúo",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "commander": "^4.1.0"
+  },
   "devDependencies": {
-    "jison": "^0.4.18"
+    "jison-gho": "^0.6.1-216"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
   }
 }

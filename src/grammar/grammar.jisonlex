@@ -3,10 +3,10 @@
   * Author: Ronald Berdúo
   */
 EndOfLine             \r|\n|\r\n
-Spaces                \r|\n|\r\n|[ \t\f]
 Identifier            [_]*[a-zA-Z][a-zA-Z0-9_]*
 NumberLiteral         [0-9]+("."[0-9]+)?
-BooleanLiteral        true|false
+BooleanLiteral        "true"|"false"
+
 
 %x END_OF_LINE_COMMENT
 %x TRADITIONAL_COMMENT
@@ -14,7 +14,7 @@ BooleanLiteral        true|false
 
 %%
 /* Blanks */
-{Spaces}                          { /* Ignore blank spaces */ }
+\s+                               { /* Ignore blank spaces */ }
 
 /* Comments */
 "/*"                              { this.pushState("TRADITIONAL_COMMENT"); }

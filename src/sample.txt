@@ -1,0 +1,3 @@
+ttt = a;
+string a = "aaa";
+
